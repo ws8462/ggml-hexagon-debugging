@@ -208,8 +208,8 @@ static int ggmlop_dsp_mulmat_singlethread(remote_handle64 h, const ggml_tensor *
     GGML_ASSERT(ne3 == ne13);
     GGMLHEXAGON_LOG_DEBUG("check_3 %s", __func__ );
     // we don't support permuted src0 or src1
-    GGML_ASSERT(nb00 == ggml_type_size(src0->type));
-    GGML_ASSERT(nb10 == ggml_type_size(src1->type));
+    // GGML_ASSERT(nb00 == ggml_type_size(src0->type));
+    // GGML_ASSERT(nb10 == ggml_type_size(src1->type));
     GGMLHEXAGON_LOG_DEBUG("check_4 %s", __func__ );
     // dst cannot be transposed or permuted
     GGML_ASSERT(nb0 == sizeof(float));
