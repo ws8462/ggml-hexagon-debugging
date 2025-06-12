@@ -5619,8 +5619,7 @@ static void ggmlhexagon_compute(ggml_backend_hexagon_context * ctx, struct ggml_
     // manually modifying the important data structure ggml_tensor in ggml.h is not make-sense and not acceptable.
     std::cout<<"=*==*==*==*==*==*==*==*==*==*==*==*==*==*="<<std::endl;
     std::chrono::high_resolution_clock::time_point start_time = std::chrono::high_resolution_clock::now();
-    int64_t t_compute_start_us = ggml_time_us();
-    std::cout<<ggml_time_us()<<std::endl;
+    
     dsptensor_0.data        = src0->data;
     dsptensor_0.data_len    = ggml_nbytes(src0);
     dsptensor_0.type        = src0->type;
@@ -5667,17 +5666,15 @@ static void ggmlhexagon_compute(ggml_backend_hexagon_context * ctx, struct ggml_
     dsptensor_2.nb[3] = dst->nb[3];
 
     memcpy(dsptensor_2.op_params, dst->op_params, GGML_MAX_OP_PARAMS / sizeof(int32_t));
+    
+    hexagon_error = op_func(ctx->ggmlop_handle, &dsptensor_0, &dsptensor_1, &dsptensor_2);
+
     std::chrono::high_resolution_clock::time_point end_time = std::chrono::high_resolution_clock::now();
     std::chrono::duration<size_t, std::nano> duration = end_time - start_time;
-    int64_t t_compute_duration_us = ggml_time_us() - t_compute_start_us;
-    double t_compute_duration_ms = 1e-3 * t_compute_duration_us;
-    std::cout<<ggml_time_us()<<std::endl;
     GGMLHEXAGON_LOG_DEBUG("pack duration %llu ns", duration.count());
     
     printf("pack duration %llu ns\n", duration.count());
-    printf("time_ : %10.2f ms\n", t_compute_duration_ms);
 
-    hexagon_error = op_func(ctx->ggmlop_handle, &dsptensor_0, &dsptensor_1, &dsptensor_2);
     if (AEE_SUCCESS != hexagon_error) {
         GGMLHEXAGON_LOG_WARN("ggmlop %s computation fail on cdsp", ggml_op_name(op->op));
     }

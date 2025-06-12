@@ -747,8 +747,13 @@ static int ggml_backend_sched_backend_id_from_cur(ggml_backend_sched_t sched, st
     const int NPU_BACKEND_ID = 0;
     const int CPU_BACKEND_ID = 1;
     
-    if (tensor->op == GGML_OP_MUL_MAT) {
-        printf("[CUSTOM] %s → NPU backend\n", tensor->name);
+    if (tensor->op == GGML_OP_MUL_MAT &&
+    tensor->src[0] &&
+    tensor->src[1] &&
+    tensor->src[0]->type == GGML_TYPE_Q8_0 &&
+    tensor->src[1]->type == GGML_TYPE_F32 &&
+    strstr(tensor->src[0]->name, "weight")) {
+        printf("[NPU-SELECT] %s: Q8_0 weight * F32 activation → NPU\n", tensor->name);
         return NPU_BACKEND_ID;
     }
 
