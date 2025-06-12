@@ -1,10 +1,14 @@
 #include "ggml-dsp.h"
-#include "qurt_printf.h"
+#include <stdint.h>
+
 // 128 byte vectors
 #define VSIZE_BYTES 128
 #define VSIZE_WORDS VSIZE_BYTES/4
 
 union ui32f { int32_t i; float f; };
+
+typedef uint16_t ggml_half;
+typedef uint32_t ggml_half2;
 
 // create a vector of floats from a float
 static __attribute__((always_inline)) HVX_Vector create_sfv_from_sf(float value) {
@@ -56,6 +60,35 @@ static void vec_dot_f32(int n, float *GGML_RESTRICT s, size_t bs, const float *G
     *s = sumf;
 }
 
+typedef struct {
+    ggml_half d;       // delta
+    int8_t  qs[32]; // quants
+} block_q8_0;
+
+void ggml_vec_dot_q8_0_q8_0_hexagon(int n, float *s, size_t bs, const void *vx, size_t bx, const void *vy, size_t by, int nrc) {
+    // QK8_0 = 32, 한 블록에 32개 int8 값
+    const int qk = 32;
+    const int nb = n / qk;
+
+    // 타입 캐스팅
+    const block_q8_0 *x = (const block_q8_0 *)vx;
+    const block_q8_0 *y = (const block_q8_0 *)vy;
+
+    float sumf = 0.0f;
+
+    for (int ib = 0; ib < nb; ++ib) {
+        int sumi = 0;
+        for (int j = 0; j < qk; ++j) {
+            sumi += (int)x[ib].qs[j] * (int)y[ib].qs[j];
+        }
+        float xd = x[ib].d; // scale factor (필요시 fp16 → float 변환)
+        float yd = y[ib].d;
+        sumf += (float)sumi * xd * yd;
+    }
+
+    *s = sumf;
+}
+
 static void ggml_compute_forward_mul_mat_one_chunk(const ggml_tensor *src0, const ggml_tensor *src1,
                                                    struct ggml_tensor *dst,
                                                    const enum ggml_type type,
@@ -65,7 +98,7 @@ static void ggml_compute_forward_mul_mat_one_chunk(const ggml_tensor *src0, cons
     ggmlhexagon_dump_tensor(src0, 0);
     ggmlhexagon_dump_tensor(src1, 0);
     ggmlhexagon_dump_tensor(dst, 0);
-    printf("DDDddDdDDDDDDDDDD?");                                                
+                                                   
     dst->ne[0] = src0->ne[1];
     dst->ne[1] = src1->ne[1];
     dst->ne[2] = src1->ne[2];
@@ -208,7 +241,7 @@ static int ggmlop_dsp_mulmat_singlethread(remote_handle64 h, const ggml_tensor *
     GGML_ASSERT(ne3 == ne13);
     GGMLHEXAGON_LOG_DEBUG("check_3 %s", __func__ );
     // we don't support permuted src0 or src1
-    // GGML_ASSERT(nb00 == ggml_type_size(src0->type));
+    // GGML_ASSERT(nb00 == ggml_type_size(src0->type)); //원래 == 4 였
     // GGML_ASSERT(nb10 == ggml_type_size(src1->type));
     GGMLHEXAGON_LOG_DEBUG("check_4 %s", __func__ );
     // dst cannot be transposed or permuted

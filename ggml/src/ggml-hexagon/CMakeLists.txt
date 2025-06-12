@@ -82,6 +82,7 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Android")
     include_directories(${HEXAGON_SDK_PATH}/libs/atomic/android_Debug_aarch64/ship)
     include_directories(${CMAKE_SOURCE_DIR}/ggml/src/ggml-hexagon/)
     include_directories(${CMAKE_SOURCE_DIR}/ggml/src/ggml-hexagon/kernels/)
+    
 elseif(CMAKE_SYSTEM_NAME STREQUAL "Windows")
     set(QNN_DEFAULT_LIB_SEARCH_PATH "C:\\" CACHE STRING "customized library search path for QNN backend")
 else()

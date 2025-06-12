@@ -43,7 +43,7 @@ CMAKE_ASM_FLAGS_RELEASE:STRING=
 
 //Choose the type of build, options are: None Debug Release RelWithDebInfo
 // MinSizeRel ...
-CMAKE_BUILD_TYPE:STRING=Release
+CMAKE_BUILD_TYPE:STRING=Debug
 
 //Enable/Disable color output during build.
 CMAKE_COLOR_MAKEFILE:BOOL=ON
@@ -589,7 +589,7 @@ GIT_EXECUTABLE:FILEPATH=/usr/bin/git
 HEXAGON_SDK_PATH:UNINITIALIZED=/home/kws/ggml-hexagon/prebuilts/Hexagon_SDK/6.2.0.1
 
 //No help, variable specified on the command line.
-HTP_ARCH_VERSION:UNINITIALIZED=v69
+HTP_ARCH_VERSION:UNINITIALIZED=v75
 
 //llama: enable all compiler warnings
 LLAMA_ALL_WARNINGS:BOOL=ON
