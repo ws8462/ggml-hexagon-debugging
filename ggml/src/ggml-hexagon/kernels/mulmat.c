@@ -165,7 +165,7 @@ static void ggml_compute_forward_mul_mat_one_chunk(const ggml_tensor *src0, cons
                 float * dst_col = (float*)((char*)dst->data + (i1 * nb1 + i2 * nb2 + i3 * nb3));
 
                 for (int32_t ir0 = iir0; ir0 < iir0 + blck_0 && ir0 < ir0_end; ir0 += num_rows_per_vec_dot) {
-                    ggml_vec_dot_q8_0_q8_0_hexagon(ne00, &tmp[ir0 - iir0], (num_rows_per_vec_dot > 1 ? 16 : 0),
+                    vec_dot_f32(ne00, &tmp[ir0 - iir0], (num_rows_per_vec_dot > 1 ? 16 : 0),
                                 (float*)(src0_row + ir0 * nb01), (num_rows_per_vec_dot > 1 ? nb01 : 0),
                                 (float*)src1_col, (num_rows_per_vec_dot > 1 ? src1_col_stride : 0), num_rows_per_vec_dot);
                 }
@@ -345,10 +345,10 @@ static int ggmlop_dsp_mulmat_singlethread(remote_handle64 h, const ggml_tensor *
 //TODO:multithreading mulmat
 static int ggmlop_dsp_mulmat_multithread(remote_handle64 h, const struct dsptensor * src0, const struct dsptensor * src1, dsptensor * dst) {
     GGMLHEXAGON_LOG_DEBUG("enter %s", __func__ );
-    volatile int dummy = 0;
-    for (volatile long i = 0; i < 1000000000; i++) {
-        dummy += i;
-    }
+    // volatile int dummy = 0;
+    // for (volatile long i = 0; i < 1000000000; i++) {
+    //     dummy += i;
+    // }
     GGMLHEXAGON_LOG_DEBUG("leave %s", __func__ );
     return 0;
 }
