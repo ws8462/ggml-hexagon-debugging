@@ -14,7 +14,10 @@
 #include "HAP_vtcm_mgr.h"
 #include "HAP_compute_res.h"
 
+#ifdef __hexagon__
 #include "qurt.h"
+#endif
+//#include "qurt.h"
 #include "AEEStdErr.h"
 #include "hexagon_types.h"
 #include "hexagon_protos.h"
