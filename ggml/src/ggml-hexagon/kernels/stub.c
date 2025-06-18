@@ -412,6 +412,7 @@ static __inline int _stub_method_1(remote_handle64 _handle, uint32_t _mid, uintp
    if(_numROut[0]>=255){
           return AEE_EUNSUPPORTED;
    }
+   printf("stub int64_t: %lld\n", ggml_time_us());
    _allocator_init(_al, 0, 0);
    _QAIC_ALLOCATE(_nErr, _al, ((((((((_numIn[0] + _numROut[0]) + _numInH[0]) + _numROutH[0]) + 1) + 1) + 0) + 0) * sizeof(_pra[0])), 4, _pra);
    _QAIC_ASSERT(_nErr, _pra);
