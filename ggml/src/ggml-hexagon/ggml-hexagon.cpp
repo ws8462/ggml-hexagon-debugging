@@ -5850,7 +5850,7 @@ static bool ggmlhexagon_compute_forward(ggml_backend_t backend, struct ggml_tens
     ggml_backend_hexagon_context * ctx  = (ggml_backend_hexagon_context *)backend->context;
 
     if (HWACCEL_CDSP == g_hexagon_appcfg.hwaccel_approach) {
-        std::cout<<"CDSP Enter"<<std::endl;
+        std::cout<<"enter CDSP"<<std::endl;
         ggmlhexagon_compute(ctx, dst);
         return true;
     }
@@ -6334,7 +6334,10 @@ static enum ggml_status ggmlhexagon_backend_graph_compute_general(ggml_backend_t
         double t_duration_ms = 1e-3 * t_duration_us;
         double duration_time = (end_time - start_time) * 1000;
         if (node->op == GGML_OP_MUL_MAT) {
-            std::cout<<"======================================="<<std::endl;
+            std::cout<<"----------------------------------------"<<std::endl;
+            std::cout<<"CDSP Backend"<<std::endl;
+            std::cout<<"backend : "<<ggml_backend_name(backend)<<std::endl;
+            std::cout<<"backend : "<<ggml_backend_dev_name(backend->device)<<std::endl;
             std::cout<<"node : "<<node->name<<std::endl;
             std::cout<<"op : "<<ggml_op_to_string(node->op)<<std::endl;
             std::cout<<"type : "<<ggml_type_to_string(node->type)<<std::endl;
@@ -6357,7 +6360,7 @@ static enum ggml_status ggmlhexagon_backend_graph_compute_general(ggml_backend_t
             std::cout<<"t_end_time : "<<t_end_us<<std::endl;
             std::cout<<"t_duration_time_u : "<<t_duration_us<<std::endl;
             std::cout<<"t_duration_time_m : "<<t_duration_ms<<" ms"<<std::endl;
-            std::cout<<"======================================="<<std::endl;
+            std::cout<<"----------------------------------------"<<std::endl;
         }
         if (!ok) {
             GGMLHEXAGON_LOG_DEBUG("%s: error: op not supported %s (%s)\n", __func__, node->name, ggml_op_name(node->op));
