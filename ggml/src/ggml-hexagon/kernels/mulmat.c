@@ -345,10 +345,8 @@ static int ggmlop_dsp_mulmat_singlethread(remote_handle64 h, const ggml_tensor *
 //TODO:multithreading mulmat
 static int ggmlop_dsp_mulmat_multithread(remote_handle64 h, const struct dsptensor * src0, const struct dsptensor * src1, dsptensor * dst) {
     GGMLHEXAGON_LOG_DEBUG("enter %s", __func__ );
-    // volatile int dummy = 0;
-    // for (volatile long i = 0; i < 1000000000; i++) {
-    //     dummy += i;
-    // }
+    GGMLHEXAGON_LOG_INFO("mulmat : %d", ggml_time_us());
+    GGMLHEXAGON_LOG_INFO("mulmat : %10f", ggml_time_us());
     GGMLHEXAGON_LOG_DEBUG("leave %s", __func__ );
     return 0;
 }

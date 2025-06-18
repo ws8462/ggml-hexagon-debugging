@@ -5666,9 +5666,10 @@ static void ggmlhexagon_compute(ggml_backend_hexagon_context * ctx, struct ggml_
     dsptensor_2.nb[3] = dst->nb[3];
 
     memcpy(dsptensor_2.op_params, dst->op_params, GGML_MAX_OP_PARAMS / sizeof(int32_t));
-    
+    //****
+    std::cout<<"dsp_start_time : "<<ggml_time_us()<<std::endl;
     hexagon_error = op_func(ctx->ggmlop_handle, &dsptensor_0, &dsptensor_1, &dsptensor_2);
-
+    std::cout<<"dsp_end_time : "<<ggml_time_us()<<std::endl;
     std::chrono::high_resolution_clock::time_point end_time = std::chrono::high_resolution_clock::now();
     std::chrono::duration<size_t, std::nano> duration = end_time - start_time;
     GGMLHEXAGON_LOG_DEBUG("pack duration %llu ns", duration.count());
@@ -6337,7 +6338,6 @@ static enum ggml_status ggmlhexagon_backend_graph_compute_general(ggml_backend_t
             std::cout<<"----------------------------------------"<<std::endl;
             std::cout<<"CDSP Backend"<<std::endl;
             std::cout<<"backend : "<<ggml_backend_name(backend)<<std::endl;
-            std::cout<<"backend : "<<ggml_backend_dev_name(backend->device)<<std::endl;
             std::cout<<"node : "<<node->name<<std::endl;
             std::cout<<"op : "<<ggml_op_to_string(node->op)<<std::endl;
             std::cout<<"type : "<<ggml_type_to_string(node->type)<<std::endl;
