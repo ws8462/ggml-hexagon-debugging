@@ -383,8 +383,7 @@ static __inline int _skel_method(int (*_pfn)(remote_handle64, const dsptensor*, 
    _praROut = (_praIn + _numIn[0] + 1);
    _praROutPost = _praROut;
    _allocator_init(_al, 0, 0);
-   GGMLHEXAGON_LOG_INFO("skel : %d", ggml_time_us());
-   GGMLHEXAGON_LOG_INFO("skel : %10f", ggml_time_us());
+   GGMLHEXAGON_LOG_INFO("skel int64_t: %lld\n", ggml_time_us());
    if(_praHIn == 0)
    {
       _praHIn = ((_praROut + _numROut[0]) + 1);
