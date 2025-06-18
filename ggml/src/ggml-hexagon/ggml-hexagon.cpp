@@ -5668,7 +5668,9 @@ static void ggmlhexagon_compute(ggml_backend_hexagon_context * ctx, struct ggml_
     memcpy(dsptensor_2.op_params, dst->op_params, GGML_MAX_OP_PARAMS / sizeof(int32_t));
     //****
     std::cout<<"dsp_start_time : "<<ggml_time_us()<<std::endl;
+    GGMLHEXAGON_LOG_INFO("dsp int64_t: %lld\n", ggml_time_us());
     hexagon_error = op_func(ctx->ggmlop_handle, &dsptensor_0, &dsptensor_1, &dsptensor_2);
+    GGMLHEXAGON_LOG_INFO("dsp int64_t: %lld\n", ggml_time_us());
     std::cout<<"dsp_end_time : "<<ggml_time_us()<<std::endl;
     std::chrono::high_resolution_clock::time_point end_time = std::chrono::high_resolution_clock::now();
     std::chrono::duration<size_t, std::nano> duration = end_time - start_time;
