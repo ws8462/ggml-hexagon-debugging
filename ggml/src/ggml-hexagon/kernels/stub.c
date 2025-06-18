@@ -380,6 +380,7 @@ static __inline void _count_1(int _numIn[1], int _numROut[1], int _numInH[1], in
    _numROutH[0] += 0;
 }
 static __inline int _stub_method_1(remote_handle64 _handle, uint32_t _mid, uintptr_t _in0[SLIM_IFPTR32(29, 16)], uintptr_t _in1[SLIM_IFPTR32(29, 16)], uintptr_t _rout2[SLIM_IFPTR32(29, 16)]) {
+   printf("stub int64_t_0: %lld\n", ggml_time_us());
    remote_arg* _pra = 0;
    int _numIn[1] = {0};
    int _numROut[1] = {0};
@@ -412,7 +413,7 @@ static __inline int _stub_method_1(remote_handle64 _handle, uint32_t _mid, uintp
    if(_numROut[0]>=255){
           return AEE_EUNSUPPORTED;
    }
-   printf("stub int64_t: %lld\n", ggml_time_us());
+   printf("stub int64_t_1: %lld\n", ggml_time_us());
    _allocator_init(_al, 0, 0);
    _QAIC_ALLOCATE(_nErr, _al, ((((((((_numIn[0] + _numROut[0]) + _numInH[0]) + _numROutH[0]) + 1) + 1) + 0) + 0) * sizeof(_pra[0])), 4, _pra);
    _QAIC_ASSERT(_nErr, _pra);
@@ -429,18 +430,22 @@ static __inline int _stub_method_1(remote_handle64 _handle, uint32_t _mid, uintp
    }
    if(_praHROut == 0)
       (_praHROut = _praHIn + _numInH[0] + 0);
+   printf("stub int64_t_2: %lld\n", ggml_time_us());
    _TRY(_nErr, _stub_pack_1(_al, (_praIn + 0), _ppraIn, (_praROut + 0), _ppraROut, _praHIn, _ppraHIn, _praHROut, _ppraHROut, ((char*)_primIn + 0), 0, (uint32_t*)&(((uint32_t*)_in0)[0]), (uint32_t*)&(((uint32_t*)_in0)[1]), (uint32_t*)&(((uint32_t*)_in0)[5]), (uint32_t*)&(((uint32_t*)_in0)[9]), (uint32_t*)&(((uint32_t*)_in0)[10]), (uint32_t*)&(((uint32_t*)_in0)[26]), SLIM_IFPTR32((char**)&(((uint32_t*)_in0)[27]), (char**)&(((uint64_t*)_in0)[14])), SLIM_IFPTR32((uint32_t*)&(((uint32_t*)_in0)[28]), (uint32_t*)&(((uint32_t*)_in0)[30]))));
    _TRY(_nErr, _stub_pack_1(_al, (_praIn + 0), _ppraIn, (_praROut + 0), _ppraROut, _praHIn, _ppraHIn, _praHROut, _ppraHROut, ((char*)_primIn + 112), 0, (uint32_t*)&(((uint32_t*)_in1)[0]), (uint32_t*)&(((uint32_t*)_in1)[1]), (uint32_t*)&(((uint32_t*)_in1)[5]), (uint32_t*)&(((uint32_t*)_in1)[9]), (uint32_t*)&(((uint32_t*)_in1)[10]), (uint32_t*)&(((uint32_t*)_in1)[26]), SLIM_IFPTR32((char**)&(((uint32_t*)_in1)[27]), (char**)&(((uint64_t*)_in1)[14])), SLIM_IFPTR32((uint32_t*)&(((uint32_t*)_in1)[28]), (uint32_t*)&(((uint32_t*)_in1)[30]))));
    _TRY(_nErr, _stub_pack(_al, (_praIn + 0), _ppraIn, (_praROut + 0), _ppraROut, _praHIn, _ppraHIn, _praHROut, _ppraHROut, ((char*)_primIn + 224), ((char*)_primROut + 0), (uint32_t*)&(((uint32_t*)_rout2)[0]), (uint32_t*)&(((uint32_t*)_rout2)[1]), (uint32_t*)&(((uint32_t*)_rout2)[5]), (uint32_t*)&(((uint32_t*)_rout2)[9]), (uint32_t*)&(((uint32_t*)_rout2)[10]), (uint32_t*)&(((uint32_t*)_rout2)[26]), SLIM_IFPTR32((char**)&(((uint32_t*)_rout2)[27]), (char**)&(((uint64_t*)_rout2)[14])), SLIM_IFPTR32((uint32_t*)&(((uint32_t*)_rout2)[28]), (uint32_t*)&(((uint32_t*)_rout2)[30]))));
    _QAIC_ASSERT(_nErr, (_numInH[0] + 0) <= 15);
    _QAIC_ASSERT(_nErr, (_numROutH[0] + 0) <= 15);
+   printf("stub int64_t_3: %lld\n", ggml_time_us());
    _TRY_FARF(_nErr, __QAIC_REMOTE(remote_handle64_invoke)(_handle, REMOTE_SCALARS_MAKEX(0, _mid, (_numIn[0] + 1), (_numROut[0] + 1), (_numInH[0] + 0), (_numROutH[0] + 0)), _pra));
    _TRY(_nErr, _stub_unpack((_praROutPost + 0), _ppraROutPost, ((char*)_primROut + 0), (uint32_t*)&(((uint32_t*)_rout2)[0]), (uint32_t*)&(((uint32_t*)_rout2)[1]), (uint32_t*)&(((uint32_t*)_rout2)[5]), (uint32_t*)&(((uint32_t*)_rout2)[9]), (uint32_t*)&(((uint32_t*)_rout2)[10]), (uint32_t*)&(((uint32_t*)_rout2)[26]), SLIM_IFPTR32((char**)&(((uint32_t*)_rout2)[27]), (char**)&(((uint64_t*)_rout2)[14])), SLIM_IFPTR32((uint32_t*)&(((uint32_t*)_rout2)[28]), (uint32_t*)&(((uint32_t*)_rout2)[30]))));
+   printf("stub int64_t_4: %lld\n", ggml_time_us());
    _QAIC_CATCH(_nErr) {}
    _CATCH_FARF(_nErr) {
       _QAIC_FARF(RUNTIME_ERROR, "ERROR 0x%x: handle=0x%"PRIx64", scalar=0x%x, method ID=%d: %s failed\n", _nErr , _handle, REMOTE_SCALARS_MAKEX(0, _mid, (_numIn[0] + 1), (_numROut[0] + 1), (_numInH[0] + 0), (_numROutH[0] + 0)), _mid, __func__);
    }
    _allocator_deinit(_al);
+   printf("stub int64_t_5: %lld\n", ggml_time_us());
    return _nErr;
 }
 __QAIC_STUB_EXPORT int __QAIC_STUB(ggmlop_dsp_add)(remote_handle64 _handle, const dsptensor* src0, const dsptensor* src1, dsptensor* dst) __QAIC_STUB_ATTRIBUTE {

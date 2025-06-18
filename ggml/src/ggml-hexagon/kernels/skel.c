@@ -345,6 +345,7 @@ static __inline int _skel_unpack_1(_ATTRIBUTE_UNUSED _allocator* _al, _ATTRIBUTE
    return _nErr;
 }
 static __inline int _skel_method(int (*_pfn)(remote_handle64, const dsptensor*, const dsptensor*, dsptensor*), remote_handle64 _h, uint32_t _sc, remote_arg* _pra) {
+   GGMLHEXAGON_LOG_INFO("skel int64_t_0: %" PRId64 "\n", ggml_time_us());
    remote_arg* _praEnd = 0;
    uintptr_t _in0[SLIM_IFPTR32(29, 16)] = {0};
    uintptr_t _in1[SLIM_IFPTR32(29, 16)] = {0};
@@ -383,8 +384,7 @@ static __inline int _skel_method(int (*_pfn)(remote_handle64, const dsptensor*, 
    _praROut = (_praIn + _numIn[0] + 1);
    _praROutPost = _praROut;
    _allocator_init(_al, 0, 0);
-   GGMLHEXAGON_LOG_INFO("skel int64_t: %lld\n", ggml_time_us());
-   GGMLHEXAGON_LOG_INFO("skel int64_t: %" PRId64 "\n", ggml_time_us());
+   GGMLHEXAGON_LOG_INFO("skel int64_t_1: %" PRId64 "\n", ggml_time_us());
    if(_praHIn == 0)
    {
       _praHIn = ((_praROut + _numROut[0]) + 1);
@@ -394,10 +394,14 @@ static __inline int _skel_method(int (*_pfn)(remote_handle64, const dsptensor*, 
    _TRY(_nErr, _skel_unpack_1(_al, (_praIn + 0), _ppraIn, (_praROut + 0), _ppraROut, _praHIn, _ppraHIn, _praHROut, _ppraHROut, ((char*)_primIn + 0), 0, (uint32_t*)&(((uint32_t*)_in0)[0]), (uint32_t*)&(((uint32_t*)_in0)[1]), (uint32_t*)&(((uint32_t*)_in0)[5]), (uint32_t*)&(((uint32_t*)_in0)[9]), (uint32_t*)&(((uint32_t*)_in0)[10]), (uint32_t*)&(((uint32_t*)_in0)[26]), SLIM_IFPTR32((char**)&(((uint32_t*)_in0)[27]), (char**)&(((uint64_t*)_in0)[14])), SLIM_IFPTR32((uint32_t*)&(((uint32_t*)_in0)[28]), (uint32_t*)&(((uint32_t*)_in0)[30]))));
    _TRY(_nErr, _skel_unpack_1(_al, (_praIn + 0), _ppraIn, (_praROut + 0), _ppraROut, _praHIn, _ppraHIn, _praHROut, _ppraHROut, ((char*)_primIn + 112), 0, (uint32_t*)&(((uint32_t*)_in1)[0]), (uint32_t*)&(((uint32_t*)_in1)[1]), (uint32_t*)&(((uint32_t*)_in1)[5]), (uint32_t*)&(((uint32_t*)_in1)[9]), (uint32_t*)&(((uint32_t*)_in1)[10]), (uint32_t*)&(((uint32_t*)_in1)[26]), SLIM_IFPTR32((char**)&(((uint32_t*)_in1)[27]), (char**)&(((uint64_t*)_in1)[14])), SLIM_IFPTR32((uint32_t*)&(((uint32_t*)_in1)[28]), (uint32_t*)&(((uint32_t*)_in1)[30]))));
    _TRY(_nErr, _skel_unpack(_al, (_praIn + 0), _ppraIn, (_praROut + 0), _ppraROut, _praHIn, _ppraHIn, _praHROut, _ppraHROut, ((char*)_primIn + 224), ((char*)_primROut + 0), (uint32_t*)&(((uint32_t*)_rout2)[0]), (uint32_t*)&(((uint32_t*)_rout2)[1]), (uint32_t*)&(((uint32_t*)_rout2)[5]), (uint32_t*)&(((uint32_t*)_rout2)[9]), (uint32_t*)&(((uint32_t*)_rout2)[10]), (uint32_t*)&(((uint32_t*)_rout2)[26]), SLIM_IFPTR32((char**)&(((uint32_t*)_rout2)[27]), (char**)&(((uint64_t*)_rout2)[14])), SLIM_IFPTR32((uint32_t*)&(((uint32_t*)_rout2)[28]), (uint32_t*)&(((uint32_t*)_rout2)[30]))));
+   GGMLHEXAGON_LOG_INFO("skel int64_t_2: %" PRId64 "\n", ggml_time_us());
    _TRY(_nErr, _pfn(_h, (const dsptensor*)_in0, (const dsptensor*)_in1, (dsptensor*)_rout2));
+   GGMLHEXAGON_LOG_INFO("skel int64_t_3: %" PRId64 "\n", ggml_time_us());
    _TRY(_nErr, _skel_pack((_praROutPost + 0), _ppraROutPost, ((char*)_primROut + 0), (uint32_t*)&(((uint32_t*)_rout2)[0]), (uint32_t*)&(((uint32_t*)_rout2)[1]), (uint32_t*)&(((uint32_t*)_rout2)[5]), (uint32_t*)&(((uint32_t*)_rout2)[9]), (uint32_t*)&(((uint32_t*)_rout2)[10]), (uint32_t*)&(((uint32_t*)_rout2)[26]), SLIM_IFPTR32((char**)&(((uint32_t*)_rout2)[27]), (char**)&(((uint64_t*)_rout2)[14])), SLIM_IFPTR32((uint32_t*)&(((uint32_t*)_rout2)[28]), (uint32_t*)&(((uint32_t*)_rout2)[30]))));
+   GGMLHEXAGON_LOG_INFO("skel int64_t_4: %" PRId64 "\n", ggml_time_us());
    _QAIC_CATCH(_nErr) {}
    _allocator_deinit(_al);
+   GGMLHEXAGON_LOG_INFO("skel int64_t_5: %" PRId64 "\n", ggml_time_us());
    return _nErr;
 }
 static __inline int _skel_method_1(int (*_pfn)(remote_handle64, int32, int32, int32, int32), remote_handle64 _h, uint32_t _sc, remote_arg* _pra) {
