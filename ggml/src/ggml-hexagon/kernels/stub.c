@@ -438,6 +438,7 @@ static __inline int _stub_method_1(remote_handle64 _handle, uint32_t _mid, uintp
    _QAIC_ASSERT(_nErr, (_numROutH[0] + 0) <= 15);
    printf("stub int64_t_3: %lld\n", ggml_time_us());
    _TRY_FARF(_nErr, __QAIC_REMOTE(remote_handle64_invoke)(_handle, REMOTE_SCALARS_MAKEX(0, _mid, (_numIn[0] + 1), (_numROut[0] + 1), (_numInH[0] + 0), (_numROutH[0] + 0)), _pra));
+   printf("stub int64_t_3_1: %lld\n", ggml_time_us());
    _TRY(_nErr, _stub_unpack((_praROutPost + 0), _ppraROutPost, ((char*)_primROut + 0), (uint32_t*)&(((uint32_t*)_rout2)[0]), (uint32_t*)&(((uint32_t*)_rout2)[1]), (uint32_t*)&(((uint32_t*)_rout2)[5]), (uint32_t*)&(((uint32_t*)_rout2)[9]), (uint32_t*)&(((uint32_t*)_rout2)[10]), (uint32_t*)&(((uint32_t*)_rout2)[26]), SLIM_IFPTR32((char**)&(((uint32_t*)_rout2)[27]), (char**)&(((uint64_t*)_rout2)[14])), SLIM_IFPTR32((uint32_t*)&(((uint32_t*)_rout2)[28]), (uint32_t*)&(((uint32_t*)_rout2)[30]))));
    printf("stub int64_t_4: %lld\n", ggml_time_us());
    _QAIC_CATCH(_nErr) {}
