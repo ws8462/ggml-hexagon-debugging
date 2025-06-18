@@ -4,8 +4,8 @@
 
 
 # Configuration directories and files
-SourceDirectory: /home/kws/ggml-hexagon
-BuildDirectory: /home/kws/ggml-hexagon/out/android
+SourceDirectory: /home/kws/ggml-hexagon-debugging
+BuildDirectory: /home/kws/ggml-hexagon-debugging/out/android
 
 # Where to place the cost data store
 CostDataFile: 
@@ -26,7 +26,7 @@ SubmitURL: http://
 NightlyStartTime: 00:00:00 EDT
 
 # Commands for the build/test/submit cycle
-ConfigureCommand: "/usr/bin/cmake" "/home/kws/ggml-hexagon"
+ConfigureCommand: "/usr/bin/cmake" "/home/kws/ggml-hexagon-debugging"
 MakeCommand: /usr/bin/cmake --build . --config "${CTEST_CONFIGURATION_TYPE}"
 DefaultCTestConfigurationType: Release
 
@@ -62,7 +62,7 @@ UpdateOptions:
 UpdateType: git
 
 # Compiler info
-Compiler: /home/kws/ggml-hexagon/prebuilts/android-ndk-r28/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++
+Compiler: /home/kws/ggml-hexagon-debugging/prebuilts/android-ndk-r28/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++
 CompilerVersion: 19.0.0
 
 # Dynamic analysis (MemCheck)

@@ -1,4 +1,4 @@
-set(CMAKE_CXX_COMPILER "/home/kws/ggml-hexagon/prebuilts/android-ndk-r28/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++")
+set(CMAKE_CXX_COMPILER "/home/kws/ggml-hexagon-debugging/prebuilts/android-ndk-r28/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++")
 set(CMAKE_CXX_COMPILER_ARG1 "")
 set(CMAKE_CXX_COMPILER_ID "Clang")
 set(CMAKE_CXX_COMPILER_VERSION "19.0.0")
@@ -22,11 +22,11 @@ set(CMAKE_CXX_SIMULATE_VERSION "")
 
 
 
-set(CMAKE_AR "/home/kws/ggml-hexagon/prebuilts/android-ndk-r28/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-ar")
-set(CMAKE_CXX_COMPILER_AR "/home/kws/ggml-hexagon/prebuilts/android-ndk-r28/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-ar")
-set(CMAKE_RANLIB "/home/kws/ggml-hexagon/prebuilts/android-ndk-r28/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-ranlib")
-set(CMAKE_CXX_COMPILER_RANLIB "/home/kws/ggml-hexagon/prebuilts/android-ndk-r28/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-ranlib")
-set(CMAKE_LINKER "/home/kws/ggml-hexagon/prebuilts/android-ndk-r28/toolchains/llvm/prebuilt/linux-x86_64/bin/ld.lld")
+set(CMAKE_AR "/home/kws/ggml-hexagon-debugging/prebuilts/android-ndk-r28/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-ar")
+set(CMAKE_CXX_COMPILER_AR "/home/kws/ggml-hexagon-debugging/prebuilts/android-ndk-r28/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-ar")
+set(CMAKE_RANLIB "/home/kws/ggml-hexagon-debugging/prebuilts/android-ndk-r28/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-ranlib")
+set(CMAKE_CXX_COMPILER_RANLIB "/home/kws/ggml-hexagon-debugging/prebuilts/android-ndk-r28/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-ranlib")
+set(CMAKE_LINKER "/home/kws/ggml-hexagon-debugging/prebuilts/android-ndk-r28/toolchains/llvm/prebuilt/linux-x86_64/bin/ld.lld")
 set(CMAKE_MT "")
 set(CMAKE_COMPILER_IS_GNUCXX )
 set(CMAKE_CXX_COMPILER_LOADED 1)
@@ -77,7 +77,7 @@ endif()
 
 
 
-set(CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES "/home/kws/ggml-hexagon/prebuilts/android-ndk-r28/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include/c++/v1;/home/kws/ggml-hexagon/prebuilts/android-ndk-r28/toolchains/llvm/prebuilt/linux-x86_64/lib/clang/19/include;/home/kws/ggml-hexagon/prebuilts/android-ndk-r28/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include/aarch64-linux-android;/home/kws/ggml-hexagon/prebuilts/android-ndk-r28/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include")
+set(CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES "/home/kws/ggml-hexagon-debugging/prebuilts/android-ndk-r28/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include/c++/v1;/home/kws/ggml-hexagon-debugging/prebuilts/android-ndk-r28/toolchains/llvm/prebuilt/linux-x86_64/lib/clang/19/include;/home/kws/ggml-hexagon-debugging/prebuilts/android-ndk-r28/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include/aarch64-linux-android;/home/kws/ggml-hexagon-debugging/prebuilts/android-ndk-r28/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include")
 set(CMAKE_CXX_IMPLICIT_LINK_LIBRARIES "c++;m;-l:libunwind.a;dl;c;-l:libunwind.a;dl")
-set(CMAKE_CXX_IMPLICIT_LINK_DIRECTORIES "/home/kws/ggml-hexagon/prebuilts/android-ndk-r28/toolchains/llvm/prebuilt/linux-x86_64/lib/clang/19/lib/linux/aarch64;/home/kws/ggml-hexagon/prebuilts/android-ndk-r28/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/aarch64-linux-android/35;/home/kws/ggml-hexagon/prebuilts/android-ndk-r28/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/aarch64-linux-android;/home/kws/ggml-hexagon/prebuilts/android-ndk-r28/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib")
+set(CMAKE_CXX_IMPLICIT_LINK_DIRECTORIES "/home/kws/ggml-hexagon-debugging/prebuilts/android-ndk-r28/toolchains/llvm/prebuilt/linux-x86_64/lib/clang/19/lib/linux/aarch64;/home/kws/ggml-hexagon-debugging/prebuilts/android-ndk-r28/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/aarch64-linux-android/35;/home/kws/ggml-hexagon-debugging/prebuilts/android-ndk-r28/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/aarch64-linux-android;/home/kws/ggml-hexagon-debugging/prebuilts/android-ndk-r28/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib")
 set(CMAKE_CXX_IMPLICIT_LINK_FRAMEWORK_DIRECTORIES "")

@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/kws/ggml-hexagon
+CMAKE_SOURCE_DIR = /home/kws/ggml-hexagon-debugging
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/kws/ggml-hexagon/out/android
+CMAKE_BINARY_DIR = /home/kws/ggml-hexagon-debugging/out/android
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -142,14 +142,14 @@ install/strip/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/kws/ggml-hexagon/out/android && $(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/out/android/CMakeFiles /home/kws/ggml-hexagon/out/android/ggml/src/ggml-hexagon//CMakeFiles/progress.marks
-	cd /home/kws/ggml-hexagon/out/android && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ggml/src/ggml-hexagon/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon/out/android/CMakeFiles 0
+	cd /home/kws/ggml-hexagon-debugging/out/android && $(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon-debugging/out/android/CMakeFiles /home/kws/ggml-hexagon-debugging/out/android/ggml/src/ggml-hexagon//CMakeFiles/progress.marks
+	cd /home/kws/ggml-hexagon-debugging/out/android && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ggml/src/ggml-hexagon/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kws/ggml-hexagon-debugging/out/android/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/kws/ggml-hexagon/out/android && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ggml/src/ggml-hexagon/clean
+	cd /home/kws/ggml-hexagon-debugging/out/android && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ggml/src/ggml-hexagon/clean
 .PHONY : clean
 
 # The main clean target
@@ -158,22 +158,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/kws/ggml-hexagon/out/android && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ggml/src/ggml-hexagon/preinstall
+	cd /home/kws/ggml-hexagon-debugging/out/android && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ggml/src/ggml-hexagon/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/kws/ggml-hexagon/out/android && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ggml/src/ggml-hexagon/preinstall
+	cd /home/kws/ggml-hexagon-debugging/out/android && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ggml/src/ggml-hexagon/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/kws/ggml-hexagon/out/android && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/kws/ggml-hexagon-debugging/out/android && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/rule:
-	cd /home/kws/ggml-hexagon/out/android && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/rule
+	cd /home/kws/ggml-hexagon-debugging/out/android && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/rule
 .PHONY : ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/rule
 
 # Convenience name for target.
@@ -182,7 +182,7 @@ ggml-hexagon: ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/rule
 
 # fast build rule for target.
 ggml-hexagon/fast:
-	cd /home/kws/ggml-hexagon/out/android && $(MAKE) $(MAKESILENT) -f ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/build.make ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/build
+	cd /home/kws/ggml-hexagon-debugging/out/android && $(MAKE) $(MAKESILENT) -f ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/build.make ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/build
 .PHONY : ggml-hexagon/fast
 
 ggml-hexagon.o: ggml-hexagon.cpp.o
@@ -190,7 +190,7 @@ ggml-hexagon.o: ggml-hexagon.cpp.o
 
 # target to build an object file
 ggml-hexagon.cpp.o:
-	cd /home/kws/ggml-hexagon/out/android && $(MAKE) $(MAKESILENT) -f ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/build.make ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/ggml-hexagon.cpp.o
+	cd /home/kws/ggml-hexagon-debugging/out/android && $(MAKE) $(MAKESILENT) -f ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/build.make ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/ggml-hexagon.cpp.o
 .PHONY : ggml-hexagon.cpp.o
 
 ggml-hexagon.i: ggml-hexagon.cpp.i
@@ -198,7 +198,7 @@ ggml-hexagon.i: ggml-hexagon.cpp.i
 
 # target to preprocess a source file
 ggml-hexagon.cpp.i:
-	cd /home/kws/ggml-hexagon/out/android && $(MAKE) $(MAKESILENT) -f ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/build.make ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/ggml-hexagon.cpp.i
+	cd /home/kws/ggml-hexagon-debugging/out/android && $(MAKE) $(MAKESILENT) -f ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/build.make ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/ggml-hexagon.cpp.i
 .PHONY : ggml-hexagon.cpp.i
 
 ggml-hexagon.s: ggml-hexagon.cpp.s
@@ -206,7 +206,7 @@ ggml-hexagon.s: ggml-hexagon.cpp.s
 
 # target to generate assembly for a file
 ggml-hexagon.cpp.s:
-	cd /home/kws/ggml-hexagon/out/android && $(MAKE) $(MAKESILENT) -f ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/build.make ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/ggml-hexagon.cpp.s
+	cd /home/kws/ggml-hexagon-debugging/out/android && $(MAKE) $(MAKESILENT) -f ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/build.make ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/ggml-hexagon.cpp.s
 .PHONY : ggml-hexagon.cpp.s
 
 kernels/stub.o: kernels/stub.c.o
@@ -214,7 +214,7 @@ kernels/stub.o: kernels/stub.c.o
 
 # target to build an object file
 kernels/stub.c.o:
-	cd /home/kws/ggml-hexagon/out/android && $(MAKE) $(MAKESILENT) -f ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/build.make ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/kernels/stub.c.o
+	cd /home/kws/ggml-hexagon-debugging/out/android && $(MAKE) $(MAKESILENT) -f ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/build.make ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/kernels/stub.c.o
 .PHONY : kernels/stub.c.o
 
 kernels/stub.i: kernels/stub.c.i
@@ -222,7 +222,7 @@ kernels/stub.i: kernels/stub.c.i
 
 # target to preprocess a source file
 kernels/stub.c.i:
-	cd /home/kws/ggml-hexagon/out/android && $(MAKE) $(MAKESILENT) -f ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/build.make ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/kernels/stub.c.i
+	cd /home/kws/ggml-hexagon-debugging/out/android && $(MAKE) $(MAKESILENT) -f ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/build.make ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/kernels/stub.c.i
 .PHONY : kernels/stub.c.i
 
 kernels/stub.s: kernels/stub.c.s
@@ -230,7 +230,7 @@ kernels/stub.s: kernels/stub.c.s
 
 # target to generate assembly for a file
 kernels/stub.c.s:
-	cd /home/kws/ggml-hexagon/out/android && $(MAKE) $(MAKESILENT) -f ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/build.make ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/kernels/stub.c.s
+	cd /home/kws/ggml-hexagon-debugging/out/android && $(MAKE) $(MAKESILENT) -f ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/build.make ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/kernels/stub.c.s
 .PHONY : kernels/stub.c.s
 
 # Help Target
@@ -264,6 +264,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/kws/ggml-hexagon/out/android && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/kws/ggml-hexagon-debugging/out/android && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

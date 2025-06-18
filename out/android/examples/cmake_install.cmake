@@ -1,4 +1,4 @@
-# Install script for directory: /home/kws/ggml-hexagon/examples
+# Install script for directory: /home/kws/ggml-hexagon-debugging/examples
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -12,7 +12,7 @@ if(NOT DEFINED CMAKE_INSTALL_CONFIG_NAME)
     string(REGEX REPLACE "^[^A-Za-z0-9_]+" ""
            CMAKE_INSTALL_CONFIG_NAME "${BUILD_TYPE}")
   else()
-    set(CMAKE_INSTALL_CONFIG_NAME "Debug")
+    set(CMAKE_INSTALL_CONFIG_NAME "Release")
   endif()
   message(STATUS "Install configuration: \"${CMAKE_INSTALL_CONFIG_NAME}\"")
 endif()
@@ -39,101 +39,101 @@ endif()
 
 # Set default install directory permissions.
 if(NOT DEFINED CMAKE_OBJDUMP)
-  set(CMAKE_OBJDUMP "/home/kws/ggml-hexagon/prebuilts/android-ndk-r28/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-objdump")
+  set(CMAKE_OBJDUMP "/home/kws/ggml-hexagon-debugging/prebuilts/android-ndk-r28/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-objdump")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/kws/ggml-hexagon/out/android/examples/batched/cmake_install.cmake")
+  include("/home/kws/ggml-hexagon-debugging/out/android/examples/batched/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/kws/ggml-hexagon/out/android/examples/embedding/cmake_install.cmake")
+  include("/home/kws/ggml-hexagon-debugging/out/android/examples/embedding/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/kws/ggml-hexagon/out/android/examples/eval-callback/cmake_install.cmake")
+  include("/home/kws/ggml-hexagon-debugging/out/android/examples/eval-callback/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/kws/ggml-hexagon/out/android/examples/gguf-hash/cmake_install.cmake")
+  include("/home/kws/ggml-hexagon-debugging/out/android/examples/gguf-hash/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/kws/ggml-hexagon/out/android/examples/gguf/cmake_install.cmake")
+  include("/home/kws/ggml-hexagon-debugging/out/android/examples/gguf/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/kws/ggml-hexagon/out/android/examples/gritlm/cmake_install.cmake")
+  include("/home/kws/ggml-hexagon-debugging/out/android/examples/gritlm/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/kws/ggml-hexagon/out/android/examples/lookahead/cmake_install.cmake")
+  include("/home/kws/ggml-hexagon-debugging/out/android/examples/lookahead/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/kws/ggml-hexagon/out/android/examples/lookup/cmake_install.cmake")
+  include("/home/kws/ggml-hexagon-debugging/out/android/examples/lookup/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/kws/ggml-hexagon/out/android/examples/parallel/cmake_install.cmake")
+  include("/home/kws/ggml-hexagon-debugging/out/android/examples/parallel/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/kws/ggml-hexagon/out/android/examples/passkey/cmake_install.cmake")
+  include("/home/kws/ggml-hexagon-debugging/out/android/examples/passkey/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/kws/ggml-hexagon/out/android/examples/retrieval/cmake_install.cmake")
+  include("/home/kws/ggml-hexagon-debugging/out/android/examples/retrieval/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/kws/ggml-hexagon/out/android/examples/save-load-state/cmake_install.cmake")
+  include("/home/kws/ggml-hexagon-debugging/out/android/examples/save-load-state/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/kws/ggml-hexagon/out/android/examples/simple/cmake_install.cmake")
+  include("/home/kws/ggml-hexagon-debugging/out/android/examples/simple/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/kws/ggml-hexagon/out/android/examples/simple-chat/cmake_install.cmake")
+  include("/home/kws/ggml-hexagon-debugging/out/android/examples/simple-chat/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/kws/ggml-hexagon/out/android/examples/speculative/cmake_install.cmake")
+  include("/home/kws/ggml-hexagon-debugging/out/android/examples/speculative/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/kws/ggml-hexagon/out/android/examples/speculative-simple/cmake_install.cmake")
+  include("/home/kws/ggml-hexagon-debugging/out/android/examples/speculative-simple/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/kws/ggml-hexagon/out/android/examples/gen-docs/cmake_install.cmake")
+  include("/home/kws/ggml-hexagon-debugging/out/android/examples/gen-docs/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/kws/ggml-hexagon/out/android/examples/training/cmake_install.cmake")
+  include("/home/kws/ggml-hexagon-debugging/out/android/examples/training/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/kws/ggml-hexagon/out/android/examples/convert-llama2c-to-ggml/cmake_install.cmake")
+  include("/home/kws/ggml-hexagon-debugging/out/android/examples/convert-llama2c-to-ggml/cmake_install.cmake")
 endif()
 

@@ -8,18 +8,18 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/kws/ggml-hexagon/tests/get-model.cpp" "tests/CMakeFiles/test-arg-parser.dir/get-model.cpp.o" "gcc" "tests/CMakeFiles/test-arg-parser.dir/get-model.cpp.o.d"
-  "/home/kws/ggml-hexagon/tests/test-arg-parser.cpp" "tests/CMakeFiles/test-arg-parser.dir/test-arg-parser.cpp.o" "gcc" "tests/CMakeFiles/test-arg-parser.dir/test-arg-parser.cpp.o.d"
+  "/home/kws/ggml-hexagon-debugging/tests/get-model.cpp" "tests/CMakeFiles/test-arg-parser.dir/get-model.cpp.o" "gcc" "tests/CMakeFiles/test-arg-parser.dir/get-model.cpp.o.d"
+  "/home/kws/ggml-hexagon-debugging/tests/test-arg-parser.cpp" "tests/CMakeFiles/test-arg-parser.dir/test-arg-parser.cpp.o" "gcc" "tests/CMakeFiles/test-arg-parser.dir/test-arg-parser.cpp.o.d"
   )
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/kws/ggml-hexagon/out/android/common/CMakeFiles/common.dir/DependInfo.cmake"
-  "/home/kws/ggml-hexagon/out/android/src/CMakeFiles/llama.dir/DependInfo.cmake"
-  "/home/kws/ggml-hexagon/out/android/ggml/src/CMakeFiles/ggml.dir/DependInfo.cmake"
-  "/home/kws/ggml-hexagon/out/android/ggml/src/CMakeFiles/ggml-cpu.dir/DependInfo.cmake"
-  "/home/kws/ggml-hexagon/out/android/ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/DependInfo.cmake"
-  "/home/kws/ggml-hexagon/out/android/ggml/src/CMakeFiles/ggml-base.dir/DependInfo.cmake"
+  "/home/kws/ggml-hexagon-debugging/out/android/common/CMakeFiles/common.dir/DependInfo.cmake"
+  "/home/kws/ggml-hexagon-debugging/out/android/src/CMakeFiles/llama.dir/DependInfo.cmake"
+  "/home/kws/ggml-hexagon-debugging/out/android/ggml/src/CMakeFiles/ggml.dir/DependInfo.cmake"
+  "/home/kws/ggml-hexagon-debugging/out/android/ggml/src/CMakeFiles/ggml-cpu.dir/DependInfo.cmake"
+  "/home/kws/ggml-hexagon-debugging/out/android/ggml/src/ggml-hexagon/CMakeFiles/ggml-hexagon.dir/DependInfo.cmake"
+  "/home/kws/ggml-hexagon-debugging/out/android/ggml/src/CMakeFiles/ggml-base.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

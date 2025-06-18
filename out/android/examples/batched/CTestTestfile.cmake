@@ -1,6 +1,6 @@
 # CMake generated Testfile for 
-# Source directory: /home/kws/ggml-hexagon/examples/batched
-# Build directory: /home/kws/ggml-hexagon/out/android/examples/batched
+# Source directory: /home/kws/ggml-hexagon-debugging/examples/batched
+# Build directory: /home/kws/ggml-hexagon-debugging/out/android/examples/batched
 # 
 # This file includes the relevant testing commands required for 
 # testing this directory and lists subdirectories to be tested as well.
