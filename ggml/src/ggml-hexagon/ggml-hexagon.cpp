@@ -5669,6 +5669,7 @@ static void ggmlhexagon_compute(ggml_backend_hexagon_context * ctx, struct ggml_
     //****
     std::cout<<"dsp_start_time : "<<ggml_time_us()<<std::endl;
     GGMLHEXAGON_LOG_INFO("dsp int64_t: %lld\n", ggml_time_us());
+    GGMLHEXAGON_LOG_INFO("dsp int64_t: %" PRId64 "\n", ggml_time_us());
     hexagon_error = op_func(ctx->ggmlop_handle, &dsptensor_0, &dsptensor_1, &dsptensor_2);
     GGMLHEXAGON_LOG_INFO("dsp int64_t: %lld\n", ggml_time_us());
     std::cout<<"dsp_end_time : "<<ggml_time_us()<<std::endl;

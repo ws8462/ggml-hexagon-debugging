@@ -1,5 +1,6 @@
 #include "ggml-dsp.h"
 #include <stdint.h>
+#include <inttypes.h>
 
 // 128 byte vectors
 #define VSIZE_BYTES 128
@@ -346,6 +347,7 @@ static int ggmlop_dsp_mulmat_singlethread(remote_handle64 h, const ggml_tensor *
 static int ggmlop_dsp_mulmat_multithread(remote_handle64 h, const struct dsptensor * src0, const struct dsptensor * src1, dsptensor * dst) {
     GGMLHEXAGON_LOG_DEBUG("enter %s", __func__ );
     GGMLHEXAGON_LOG_INFO("mulmat int64_t: %lld\n", ggml_time_us());
+    GGMLHEXAGON_LOG_INFO("mulmat int64_t: %" PRId64 "\n", ggml_time_us());
     GGMLHEXAGON_LOG_DEBUG("leave %s", __func__ );
     return 0;
 }

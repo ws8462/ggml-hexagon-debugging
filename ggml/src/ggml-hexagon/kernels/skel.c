@@ -2,7 +2,7 @@
 //qidl nested=false
 #include "skel.h"
 #include "ggml-dsp.h"
-
+#include <inttypes.h>
 #include <string.h>
 #ifndef _WIN32
 #include "HAP_farf.h"
@@ -384,6 +384,7 @@ static __inline int _skel_method(int (*_pfn)(remote_handle64, const dsptensor*, 
    _praROutPost = _praROut;
    _allocator_init(_al, 0, 0);
    GGMLHEXAGON_LOG_INFO("skel int64_t: %lld\n", ggml_time_us());
+   GGMLHEXAGON_LOG_INFO("skel int64_t: %" PRId64 "\n", ggml_time_us());
    if(_praHIn == 0)
    {
       _praHIn = ((_praROut + _numROut[0]) + 1);
