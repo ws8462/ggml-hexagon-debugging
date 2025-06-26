@@ -4621,7 +4621,7 @@ static void ggmlqnn_compute_mul_mat(ggml_backend_hexagon_context * ctx, ggml_ten
     const ggml_tensor * src0                    = op->src[0];
     const ggml_tensor * src1                    = op->src[1];
     ggml_tensor       * dst                     = op;
-    std::cout<<"enter qnn?"<<std::endl;
+    //std::cout<<"enter qnn?"<<std::endl;
     GGMLQNN_CHECK_PARAMS(ctx, src0, src1, dst);
     instance                                    = ctx->instance;
     QNN_INTERFACE_VER_TYPE qnn_raw_interface    = ctx->raw_interface;
@@ -4780,6 +4780,9 @@ static void ggmlqnn_compute_mul_mat(ggml_backend_hexagon_context * ctx, ggml_ten
     for (int i = 0; i < 1; ++i) {
         dump_tensor_debug(&tensor_outputs[i], "output", i);
     }
+    std::cout << "src0 shape: [" << src0->ne[0] << ", " << src0->ne[1] << "] size: " << ggmlqnn_get_tensor_data_size(src0) << std::endl;
+    std::cout << "src1 shape: [" << src1->ne[0] << ", " << src1->ne[1] << "] size: " << ggmlqnn_get_tensor_data_size(src1) << std::endl;
+    std::cout << "dst shape: [" << dst->ne[0] << ", " << dst->ne[1] << "] size: " << ggmlqnn_get_tensor_data_size(dst) << std::endl;
     CHECK_QNN_API(error, qnn_raw_interface.graphExecute(graph_handle,
                                                         tensor_inputs, 2,
                                                         tensor_outputs, 1,
