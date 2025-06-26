@@ -2868,7 +2868,7 @@ private:
     std::string _graph_name;
     HEXAGONBackend _device_id;
     void * _rpc_lib_handle      = nullptr;
-    bool       _enable_qnn_rpc  = true; //TODO:unknown issue with QNN RPC feature
+    bool       _enable_qnn_rpc  = false; //TODO:unknown issue with QNN RPC feature
 
     qnn_instance(const qnn_instance &) = delete;
     void operator=(const qnn_instance &) = delete;
