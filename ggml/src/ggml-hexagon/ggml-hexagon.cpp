@@ -4681,11 +4681,11 @@ static void ggmlqnn_compute_mul_mat(ggml_backend_hexagon_context * ctx, ggml_ten
         p_tensor1 = ggmlqnn_create_general_tensor(instance, graph_handle, src1, nullptr,
                                                   QNN_TENSOR_TYPE_APP_WRITE,
                                                   QNN_DATATYPE_FLOAT_32, src0_rank,
-                                                  nullptr, nullptr, 1);
+                                                  nullptr, nullptr, 0);
         p_tensor2 = ggmlqnn_create_general_tensor(instance, graph_handle, dst, nullptr,
                                                   QNN_TENSOR_TYPE_APP_READ,
                                                   QNN_DATATYPE_FLOAT_32, src0_rank,
-                                                  nullptr, nullptr, 1);
+                                                  nullptr, nullptr, 0);
 
         //create param tensor for offload 2d/3d/4d matrix multiplication
         const uint32_t param_tensor_data[GGML_MAX_DIMS][GGML_MAX_DIMS] = {
@@ -4768,10 +4768,10 @@ static void ggmlqnn_compute_mul_mat(ggml_backend_hexagon_context * ctx, ggml_ten
 
     Qnn_Tensor_t tensor_inputs[] = {
             *p_tensor0,
-            *p_tensor1
+            *p_tensor1_transpose //*p_tensor1
     };
     Qnn_Tensor_t tensor_outputs[] = {
-            *p_tensor2
+            *p_tensor2_transpose //*p_tensor2
     };
     GGMLHEXAGON_LOG_DEBUG("5.....\n");
     for (int i = 0; i < 2; ++i) {
