@@ -4735,6 +4735,8 @@ static void ggmlqnn_compute_mul_mat(ggml_backend_hexagon_context * ctx, ggml_ten
     const ggml_tensor * src0                    = op->src[0];
     const ggml_tensor * src1                    = op->src[1];
     ggml_tensor       * dst                     = op;
+    ggml_tensor * src0_q8 = (ggml_tensor *) malloc(sizeof(ggml_tensor));
+    memcpy(src0_q8, op->src[0], sizeof(ggml_tensor));
     ggml_tensor * src1_q8 = (ggml_tensor *) malloc(sizeof(ggml_tensor));
     memcpy(src1_q8, op->src[1], sizeof(ggml_tensor));
     //std::cout<<"enter qnn?"<<std::endl;
@@ -4840,7 +4842,7 @@ static void ggmlqnn_compute_mul_mat(ggml_backend_hexagon_context * ctx, ggml_ten
                                                   QNN_TENSOR_TYPE_APP_WRITE,
                                                   QNN_DATATYPE_FLOAT_32, src0_rank,
                                                   nullptr, nullptr, 0);
-        p_tensor1 = ggmlqnn_create_general_tensor(instance, graph_handle, src1, nullptr,
+        p_tensor1 = ggmlqnn_create_general_tensor(instance, graph_handle, src0_q8, nullptr,
                                                   QNN_TENSOR_TYPE_APP_WRITE,
                                                   QNN_DATATYPE_FLOAT_32, src0_rank,
                                                   nullptr, nullptr, 0); //0 src1
@@ -4867,7 +4869,7 @@ static void ggmlqnn_compute_mul_mat(ggml_backend_hexagon_context * ctx, ggml_ten
         dump_tensor_debug(p_tensor1, "tensor1_before_transepose", 0);
         dump_tensor_debug(p_tensor2, "tensor2_before_transepose", 0);
         //create transpose tensor
-        p_tensor1_transpose = ggmlqnn_create_general_tensor(instance, graph_handle, src1,
+        p_tensor1_transpose = ggmlqnn_create_general_tensor(instance, graph_handle, src0_q8,
                                                             "transpose",
                                                             QNN_TENSOR_TYPE_NATIVE,
                                                             QNN_DATATYPE_FLOAT_32, src0_rank,
@@ -4930,7 +4932,7 @@ static void ggmlqnn_compute_mul_mat(ggml_backend_hexagon_context * ctx, ggml_ten
             GGMLHEXAGON_LOG_ERROR("Failed to create rpc buffer1 for QNN tensor");
             return ;
         }
-        uint8_t * rpc_buf_2 = ggmlqnn_create_rpc_buffer(instance, src1, p_tensor1, true);
+        uint8_t * rpc_buf_2 = ggmlqnn_create_rpc_buffer(instance, src0_q8, p_tensor1, true);
         if (rpc_buf_2 == nullptr) {
             GGMLHEXAGON_LOG_ERROR("Failed to create rpc buffer2 for QNN tensor");
             return ;
