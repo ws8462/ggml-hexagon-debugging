@@ -4167,15 +4167,14 @@ static Qnn_Tensor_t * ggmlqnn_create_general_tensor(qnn_instance * instance, Qnn
     //         // 이 시점에서는 생성하지 않음 → 호출자가 따로 만들거나
     //         // ggml_tensor의 `op_params`에 저장해두는 방식도 가능
     //             // (4) 디버깅 출력
-    //         printf("[create_tensor] quantized tensor dims: [%u, %u]\n", out_rows, out_cols);
-    //         printf("[create_tensor] total bytes: %u\n", out_data_size);
-    //         printf("[create_tensor] pointer to int8 data: %p\n", (void *) out_data);
-    //         printf("[create_tensor] pointer to scale data: %p\n", (void *) out_scales);
-    //         printf("[create_tensor] first 4 scale values: ");
-    //         for (int i = 0; i < 4 && i < (int)(out_rows * (out_cols / 32)); ++i) {
-    //             printf("%.6f ", out_scales[i]);
-    //         }
-    //         printf("\n");
+    //         GGMLHEXAGON_LOG_DEBUG("[create_tensor] quantized tensor dims: [%u, %u]\n", out_rows, out_cols);
+    //         GGMLHEXAGON_LOG_DEBUG("[create_tensor] total bytes: %u\n", out_data_size);
+    //         GGMLHEXAGON_LOG_DEBUG("[create_tensor] pointer to int8 data: %p\n", (void *) out_data);
+    //         GGMLHEXAGON_LOG_DEBUG("[create_tensor] pointer to scale data: %p\n", (void *) out_scales);
+    //         GGMLHEXAGON_LOG_DEBUG("[create_tensor] first 4 scale values: ");
+    //         // for (int i = 0; i < 4 && i < (int)(out_rows * (out_cols / 32)); ++i) {
+    //         //     printf("%.6f ", out_scales[i]);
+    //         // }
     //     }
     // }
     //case 2: use user's specified tensor_dims
@@ -4735,6 +4734,7 @@ static void ggmlqnn_compute_mul_mat(ggml_backend_hexagon_context * ctx, ggml_ten
     Qnn_Tensor_t * p_tensor2_transpose          = nullptr;
     const ggml_tensor * src0                    = op->src[0];
     const ggml_tensor * src1                    = op->src[1];
+    ggml_tensor * src1_q8                       = op->src[1];
     ggml_tensor       * dst                     = op;
     //std::cout<<"enter qnn?"<<std::endl;
     GGMLQNN_CHECK_PARAMS(ctx, src0, src1, dst);
@@ -4789,11 +4789,40 @@ static void ggmlqnn_compute_mul_mat(ggml_backend_hexagon_context * ctx, ggml_ten
         graph_handle = instance->get_qnn_graph_handle();
         int64_t start_1 = ggml_time_us();
         //create computational tensor
+        if (nullptr != src1_q8 && src1_q8->type == GGML_TYPE_F32) {
+            // (1) Q8_0용 양자화 실행
+            int8_t * out_data = nullptr;
+            float * out_scales = nullptr;
+            uint32_t out_rows = 0, out_cols = 0, out_data_size = 0;
+            hexagon_quantize_q8(src1_q8, &out_data, &out_scales, &out_rows, &out_cols, &out_data_size);
+
+            // (2) shape 업데이트
+            //tensor_dims = new uint32_t[2]{out_rows, out_cols}; // 동적 할당 필요
+            src1_q8->type = GGML_TYPE_Q8_0;
+            // (3) QNN 텐서 설정
+            //qnn_data_type = QNN_DATATYPE_SFIXED_POINT_8;
+            //data = out_data;
+            //data_size = out_data_size;
+
+            // (4) Q8_0 스케일은 별도 텐서로 만들어줘야 하는데,
+            // 이 시점에서는 생성하지 않음 → 호출자가 따로 만들거나
+            // ggml_tensor의 `op_params`에 저장해두는 방식도 가능
+                // (4) 디버깅 출력
+            // GGMLHEXAGON_LOG_DEBUG("[create_tensor] quantized tensor dims: [%u, %u]\n", out_rows, out_cols);
+            // GGMLHEXAGON_LOG_DEBUG("[create_tensor] total bytes: %u\n", out_data_size);
+            // GGMLHEXAGON_LOG_DEBUG("[create_tensor] pointer to int8 data: %p\n", (void *) out_data);
+            // GGMLHEXAGON_LOG_DEBUG("[create_tensor] pointer to scale data: %p\n", (void *) out_scales);
+            // GGMLHEXAGON_LOG_DEBUG("[create_tensor] first 4 scale values: ");
+            // for (int i = 0; i < 4 && i < (int)(out_rows * (out_cols / 32)); ++i) {
+            //     printf("%.6f ", out_scales[i]);
+            // }
+        }
+
         p_tensor0 = ggmlqnn_create_general_tensor(instance, graph_handle, src0, nullptr,
                                                   QNN_TENSOR_TYPE_APP_WRITE,
                                                   QNN_DATATYPE_FLOAT_32, src0_rank,
                                                   nullptr, nullptr, 0);
-        p_tensor1 = ggmlqnn_create_general_tensor(instance, graph_handle, src1, nullptr,
+        p_tensor1 = ggmlqnn_create_general_tensor(instance, graph_handle, src1_q8, nullptr,
                                                   QNN_TENSOR_TYPE_APP_WRITE,
                                                   QNN_DATATYPE_FLOAT_32, src0_rank,
                                                   nullptr, nullptr, 0); //0
@@ -4883,7 +4912,7 @@ static void ggmlqnn_compute_mul_mat(ggml_backend_hexagon_context * ctx, ggml_ten
             GGMLHEXAGON_LOG_ERROR("Failed to create rpc buffer1 for QNN tensor");
             return ;
         }
-        uint8_t * rpc_buf_2 = ggmlqnn_create_rpc_buffer(instance, src1, p_tensor1, true);
+        uint8_t * rpc_buf_2 = ggmlqnn_create_rpc_buffer(instance, src1_q8, p_tensor1, true);
         if (rpc_buf_2 == nullptr) {
             GGMLHEXAGON_LOG_ERROR("Failed to create rpc buffer2 for QNN tensor");
             return ;
