@@ -4145,7 +4145,7 @@ static Qnn_Tensor_t * ggmlqnn_create_general_tensor(qnn_instance * instance, Qnn
                 break;
         }
     }
-    if (nullptr != tensor) {
+    if (nullptr != tensor && qnn_tensor_type == QNN_TENSOR_TYPE_APP_WRITE) {
         if (tensor->type == GGML_TYPE_F32) {
             // (1) Q8_0용 양자화 실행
             int8_t * out_data = nullptr;
