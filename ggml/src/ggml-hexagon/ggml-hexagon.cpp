@@ -4145,39 +4145,39 @@ static Qnn_Tensor_t * ggmlqnn_create_general_tensor(qnn_instance * instance, Qnn
                 break;
         }
     }
-    if (nullptr != tensor && qnn_tensor_type == QNN_TENSOR_TYPE_APP_WRITE) {
-        if (tensor->type == GGML_TYPE_F32) {
-            // (1) Q8_0용 양자화 실행
-            int8_t * out_data = nullptr;
-            float * out_scales = nullptr;
-            uint32_t out_rows = 0, out_cols = 0, out_data_size = 0;
+    // if (nullptr != tensor && qnn_tensor_type == QNN_TENSOR_TYPE_APP_WRITE) {
+    //     if (tensor->type == GGML_TYPE_F32) {
+    //         // (1) Q8_0용 양자화 실행
+    //         int8_t * out_data = nullptr;
+    //         float * out_scales = nullptr;
+    //         uint32_t out_rows = 0, out_cols = 0, out_data_size = 0;
 
-            hexagon_quantize_q8(tensor, &out_data, &out_scales, &out_rows, &out_cols, &out_data_size);
+    //         hexagon_quantize_q8(tensor, &out_data, &out_scales, &out_rows, &out_cols, &out_data_size);
 
-            // (2) shape 업데이트
-            tensor_dims = new uint32_t[2]{out_rows, out_cols}; // 동적 할당 필요
-            rank = 2;
+    //         // (2) shape 업데이트
+    //         tensor_dims = new uint32_t[2]{out_rows, out_cols}; // 동적 할당 필요
+    //         rank = 2;
 
-            // (3) QNN 텐서 설정
-            qnn_data_type = QNN_DATATYPE_SFIXED_POINT_8;
-            data = out_data;
-            data_size = out_data_size;
+    //         // (3) QNN 텐서 설정
+    //         qnn_data_type = QNN_DATATYPE_SFIXED_POINT_8;
+    //         data = out_data;
+    //         data_size = out_data_size;
 
-            // (4) Q8_0 스케일은 별도 텐서로 만들어줘야 하는데,
-            // 이 시점에서는 생성하지 않음 → 호출자가 따로 만들거나
-            // ggml_tensor의 `op_params`에 저장해두는 방식도 가능
-                // (4) 디버깅 출력
-            printf("[create_tensor] quantized tensor dims: [%u, %u]\n", out_rows, out_cols);
-            printf("[create_tensor] total bytes: %u\n", out_data_size);
-            printf("[create_tensor] pointer to int8 data: %p\n", (void *) out_data);
-            printf("[create_tensor] pointer to scale data: %p\n", (void *) out_scales);
-            printf("[create_tensor] first 4 scale values: ");
-            for (int i = 0; i < 4 && i < (int)(out_rows * (out_cols / 32)); ++i) {
-                printf("%.6f ", out_scales[i]);
-            }
-            printf("\n");
-        }
-    }
+    //         // (4) Q8_0 스케일은 별도 텐서로 만들어줘야 하는데,
+    //         // 이 시점에서는 생성하지 않음 → 호출자가 따로 만들거나
+    //         // ggml_tensor의 `op_params`에 저장해두는 방식도 가능
+    //             // (4) 디버깅 출력
+    //         printf("[create_tensor] quantized tensor dims: [%u, %u]\n", out_rows, out_cols);
+    //         printf("[create_tensor] total bytes: %u\n", out_data_size);
+    //         printf("[create_tensor] pointer to int8 data: %p\n", (void *) out_data);
+    //         printf("[create_tensor] pointer to scale data: %p\n", (void *) out_scales);
+    //         printf("[create_tensor] first 4 scale values: ");
+    //         for (int i = 0; i < 4 && i < (int)(out_rows * (out_cols / 32)); ++i) {
+    //             printf("%.6f ", out_scales[i]);
+    //         }
+    //         printf("\n");
+    //     }
+    // }
     //case 2: use user's specified tensor_dims
     if (nullptr != dims) {
         tensor_dims = dims;
