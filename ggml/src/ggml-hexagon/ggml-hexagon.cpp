@@ -4232,7 +4232,7 @@ static Qnn_Tensor_t * ggmlqnn_create_general_tensor(qnn_instance * instance, Qnn
     }
     bool enable_npu_rpc = (instance->enable_qnn_rpc() && instance->get_device_id() == HEXAGON_BACKEND_QNNNPU);
     Qnn_MemHandle_t handle = nullptr;
-    if (enable_npu_rpc) { // (qnn_tensor_type == QNN_TENSOR_TYPE_APP_WRITE || qnn_tensor_type == QNN_TENSOR_TYPE_APP_READ)
+    if (enable_npu_rpc && (qnn_tensor_type == QNN_TENSOR_TYPE_APP_WRITE || qnn_tensor_type == QNN_TENSOR_TYPE_APP_READ)) { // (qnn_tensor_type == QNN_TENSOR_TYPE_APP_WRITE || qnn_tensor_type == QNN_TENSOR_TYPE_APP_READ)
         // uint8_t * rpc_buf = ggmlqnn_create_rpc_buffer(instance, tensor, p_qnn_tensor, true);
         // if (rpc_buf == nullptr) {
         //     GGMLHEXAGON_LOG_ERROR("Failed to create rpc buffer for QNN tensor");
