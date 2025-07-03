@@ -4734,8 +4734,9 @@ static void ggmlqnn_compute_mul_mat(ggml_backend_hexagon_context * ctx, ggml_ten
     Qnn_Tensor_t * p_tensor2_transpose          = nullptr;
     const ggml_tensor * src0                    = op->src[0];
     const ggml_tensor * src1                    = op->src[1];
-    ggml_tensor * src1_q8                       = op->src[1];
     ggml_tensor       * dst                     = op;
+    ggml_tensor * src1_q8 = (ggml_tensor *) malloc(sizeof(ggml_tensor));
+    memcpy(src1_q8, op->src[1], sizeof(ggml_tensor));
     //std::cout<<"enter qnn?"<<std::endl;
     GGMLQNN_CHECK_PARAMS(ctx, src0, src1, dst);
     instance                                    = ctx->instance;
