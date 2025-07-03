@@ -4816,6 +4816,23 @@ static void ggmlqnn_compute_mul_mat(ggml_backend_hexagon_context * ctx, ggml_ten
             // for (int i = 0; i < 4 && i < (int)(out_rows * (out_cols / 32)); ++i) {
             //     printf("%.6f ", out_scales[i]);
             // }
+                // (3) 디버깅 출력
+            GGMLHEXAGON_LOG_DEBUG("[src1_q8] quantization done");
+            GGMLHEXAGON_LOG_DEBUG("[src1_q8] output shape: [%u, %u], total blocks = %u", out_rows, out_cols, (out_rows * (out_cols / 32)));
+            GGMLHEXAGON_LOG_DEBUG("[src1_q8] data ptr: %p, scales ptr: %p", (void *)out_data, (void *)out_scales);
+
+            char quant_vals[256] = {};
+            snprintf(quant_vals, sizeof(quant_vals),
+                    "[src1_q8] first 8 quantized values: %4d %4d %4d %4d %4d %4d %4d %4d",
+                    out_data[0], out_data[1], out_data[2], out_data[3],
+                    out_data[4], out_data[5], out_data[6], out_data[7]);
+            GGMLHEXAGON_LOG_DEBUG("%s", quant_vals);
+
+            char scale_vals[256] = {};
+            snprintf(scale_vals, sizeof(scale_vals),
+                    "[src1_q8] first 4 scales: %.6f %.6f %.6f %.6f",
+                    out_scales[0], out_scales[1], out_scales[2], out_scales[3]);
+            GGMLHEXAGON_LOG_DEBUG("%s", scale_vals);
         }
 
         p_tensor0 = ggmlqnn_create_general_tensor(instance, graph_handle, src0, nullptr,
@@ -4825,7 +4842,7 @@ static void ggmlqnn_compute_mul_mat(ggml_backend_hexagon_context * ctx, ggml_ten
         p_tensor1 = ggmlqnn_create_general_tensor(instance, graph_handle, src1_q8, nullptr,
                                                   QNN_TENSOR_TYPE_APP_WRITE,
                                                   QNN_DATATYPE_FLOAT_32, src0_rank,
-                                                  nullptr, nullptr, 0); //0
+                                                  nullptr, nullptr, 0); //0 src1
         p_tensor2 = ggmlqnn_create_general_tensor(instance, graph_handle, dst, nullptr,
                                                   QNN_TENSOR_TYPE_APP_READ,
                                                   QNN_DATATYPE_FLOAT_32, src0_rank,
@@ -4849,11 +4866,11 @@ static void ggmlqnn_compute_mul_mat(ggml_backend_hexagon_context * ctx, ggml_ten
         dump_tensor_debug(p_tensor1, "tensor1_before_transepose", 0);
         dump_tensor_debug(p_tensor2, "tensor2_before_transepose", 0);
         //create transpose tensor
-        p_tensor1_transpose = ggmlqnn_create_general_tensor(instance, graph_handle, src1,
+        p_tensor1_transpose = ggmlqnn_create_general_tensor(instance, graph_handle, src1_q8,
                                                             "transpose",
                                                             QNN_TENSOR_TYPE_NATIVE,
                                                             QNN_DATATYPE_FLOAT_32, src0_rank,
-                                                            nullptr, nullptr, 0, true);
+                                                            nullptr, nullptr, 0, true); //src1
         p_tensor2_transpose = ggmlqnn_create_general_tensor(instance, graph_handle, dst,
                                                             "transpose",
                                                             QNN_TENSOR_TYPE_NATIVE,
