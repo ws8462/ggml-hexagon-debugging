@@ -2014,6 +2014,8 @@ static void ggmlhexagon_load_cfg() {
 
     if (precision_mode.find("fp16") != std::string::npos) {
         g_hexagon_appcfg.precision_mode = 1;
+    } else if (precision_mode.find("fp32") != std::string::npos) {
+        g_hexagon_appcfg.precision_mode = 2;
     } else {
         g_hexagon_appcfg.precision_mode = 0;
     }
