@@ -4024,7 +4024,7 @@ static Qnn_OpConfig_t ggmlqnn_create_op_config(const char * name, const char * p
     } else {
         snprintf(opcfg_name, GGML_MAX_NAME, "opcfg_%s_%-8d", name, ggmlqnn_get_idx(QNN_OPCFG_INDEX));
     }
-    //GGMLHEXAGON_LOG_DEBUG("create qnn opconfig %s", opcfg_name);
+    GGMLHEXAGON_LOG_DEBUG("create qnn opconfig %s", opcfg_name);
     ggmlqnn_inc_idx(QNN_OPCFG_INDEX);
 
     Qnn_OpConfigV1_t v1 = {opcfg_name, package, type,
