@@ -4479,7 +4479,7 @@ static void ggmlqnn_compute_mul_mat_4d(ggml_backend_hexagon_context * ctx, ggml_
 
     std::string graph_name;
     ggmlhexagon_get_opkey_from_op(op, graph_name);
-    GGMLHEXAGON_LOG_DEBUG("graph name %s\n", graph_name.c_str());
+    GGMLHEXAGON_LOG_DEBUG("mul_mat_4d graph name %s\n", graph_name.c_str());
 
     ggmlhexagon_print_tensors_info(__func__, ctx, src0, src1, dst);
 
@@ -4890,7 +4890,7 @@ static void ggmlqnn_compute_mul_mat(ggml_backend_hexagon_context * ctx, ggml_ten
         Qnn_OpConfig_t out_0 = ggmlqnn_create_op_config("mulmat_opconfig",
                                                         QNN_OP_PACKAGE_NAME_QTI_AISW,
                                                         QNN_OP_MAT_MUL, out_0_params, 1,
-                                                        out_0_inputs, 2, out_0_outputs, 1);
+                                                        out_0_inputs, 2, out_0_outputs, 1); //QNN_OP_PACKAGE_NAME_QTI_AISW
         GGMLHEXAGON_LOG_DEBUG("start2 : %lld microseconds", ggml_time_us() - start_2);
         int64_t start_3 = ggml_time_us();
         GGMLHEXAGON_LOG_DEBUG("1.....\n");
